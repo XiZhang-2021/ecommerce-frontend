@@ -1,0 +1,61 @@
+<ng-container *ngIf="cartProducts.length !== 0">
+  <div class="container">
+    <div class="card-table">
+      <div class="cart-product">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Product Name</th>
+              <th>Product Image</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody *ngFor = "let p of cartProducts; let i = index">
+            <tr>
+              <td>{{i+1}}</td>
+              <td>{{p.name}}</td>
+              <td><img src="{{p.image}}" class="product-detail-image" width="100" height="140"></td>
+              <td style="width:25%;">{{p.description}}</td>
+              <td style="width:12%;">${{p.price}}</td>
+              <td style="width:12%;">{{p.quantity}}</td>
+              <td style="width:12%;">${{p.total}}</td>
+              <td>
+                <button (click) = "removeProduct(p)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+              </td>
+            </tr>
+          </tbody>
+          <tr>
+            <td colspan="4"></td>
+            <td><button class = "btn btn-primary" routerLink="/products">Shop More</button></td>
+            <td><button class = "btn btn-success" routerLink="/order">Checkout</button></td>
+            <td><strong>Total: ${{grandTotal}}</strong></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="cartProducts.length === 0">
+  <div class = "container">
+    <div class="card">
+      <h5 class="card-title">My Cart</h5>
+
+    </div>
+    <div class="center">
+      <img src="https://www.adasglobal.com/img/empty-cart.png" >
+      <h4>your cart is empty!</h4>
+      <h6>Add item to it now</h6>
+      <br>
+      <br>
+      <button routerLink="/products" class="btn btn-primary">Shop Now</button>
+    </div>
+  </div>
+</ng-container>
+

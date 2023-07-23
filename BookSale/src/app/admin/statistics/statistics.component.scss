@@ -1,0 +1,16 @@
+.chart-container {
+  display: flex;
+  flex-direction: row;  // 使元素水平排列
+  justify-content: flex-start;  // 将内容移到左边
+  flex-wrap: wrap;
+}
+
+.chart-item {
+  width: 35%;  // 使每个图表占据容器的一半宽度
+  margin-left : 80px;
+  margin-bottom: 30px;
+}
+
+.chart-content{
+  height : 360px;
+}

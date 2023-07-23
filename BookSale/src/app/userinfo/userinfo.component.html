@@ -1,0 +1,122 @@
+<mat-card class="my-card">
+  <mat-card-content>
+    <p>username : {{user?.username}}</p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="my-card">
+  <mat-card-content>
+    <button (click)="changePayment()" mat-raised-button color="primary">Change Payment Method</button>
+  </mat-card-content>
+
+  <ng-template [ngIf]="isPaymentChanging" >
+  <mat-card-content>
+    <form fxLayout="column" [formGroup]="paymentChangeFormGroup" (ngSubmit)="changePaymentMethod()"  >
+      <mat-form-field>
+        <mat-label>Card Number</mat-label>
+        <input type="text" matInput formControlName="cardnumber">
+        <mat-error *ngIf="paymentChangeFormGroup.get('cardnumber')?.getError('required')">Card Number must be required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Expire Date</mat-label>
+        <input type="text" matInput formControlName="expiredate">
+        <mat-error *ngIf="paymentChangeFormGroup.get('expiredate')?.getError('required')">Expire Date must be required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>CVV</mat-label>
+        <input type="text" matInput formControlName="cvv">
+        <mat-error *ngIf="paymentChangeFormGroup.get('cvv')?.getError('required')">CVV must be required</mat-error>
+      </mat-form-field>
+      <p>
+        <button (click)="cancelPay()" mat-raised-button color="primary" style="margin-right: 30px">Cancel</button>
+        <button type="submit" mat-raised-button color="primary">Confirm</button>
+      </p>
+    </form>
+  </mat-card-content>
+  </ng-template>
+
+</mat-card>
+
+
+<mat-card class="my-card">
+  <mat-card-content>
+    <button (click)="changeAddr()" mat-raised-button color="primary">Change Address</button>
+  </mat-card-content>
+
+  <ng-template [ngIf]="isAddressChanging" >
+    <mat-card-content>
+      <form fxLayout="column" [formGroup]="addressFormGroup" (ngSubmit)="changAddress()"  >
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input type="text" matInput formControlName="address">
+          <mat-error *ngIf="addressFormGroup.get('address')?.getError('required')">Address must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input type="text" matInput formControlName="city">
+          <mat-error *ngIf="addressFormGroup.get('city')?.getError('required')">City must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Zip</mat-label>
+          <input type="text" matInput formControlName="zip">
+          <mat-error *ngIf="addressFormGroup.get('zip')?.getError('required')">Zip must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>State</mat-label>
+          <input type="text" matInput formControlName="state">
+          <mat-error *ngIf="addressFormGroup.get('state')?.getError('required')">State must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Phone</mat-label>
+          <input type="text" matInput formControlName="phone">
+          <mat-error *ngIf="addressFormGroup.get('phone')?.getError('required')">Phone must be required</mat-error>
+        </mat-form-field>
+        <p>
+          <button (click)="cancelAddr()" mat-raised-button color="primary" style="margin-right: 30px">Cancel</button>
+          <button type="submit" mat-raised-button color="primary">Confirm</button>
+        </p>
+      </form>
+    </mat-card-content>
+  </ng-template>
+
+</mat-card>
+
+
+
+<mat-card class="my-card">
+  <mat-card-content>
+    <button (click)="changePassword()" mat-raised-button color="primary">Change Password</button>
+  </mat-card-content>
+  <ng-template [ngIf]="isChanging">
+
+    <mat-card-content>
+      <form fxLayout="column" [formGroup]="changeFormGroup" (ngSubmit)="change()"  >
+        <mat-form-field>
+          <mat-label>Old Password</mat-label>
+          <input type="password" matInput formControlName="oldpassword">
+          <mat-error *ngIf="changeFormGroup.get('oldpassword')?.getError('required')">Old Password must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>New Password</mat-label>
+          <input type="password" matInput formControlName="newpassword">
+          <mat-error *ngIf="changeFormGroup.get('newpassword')?.getError('required')">New Password must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirm New Password</mat-label>
+          <input type="password" matInput formControlName="confirm">
+          <mat-error *ngIf="changeFormGroup.get('confirm')?.getError('required')">New Password must be required</mat-error>
+        </mat-form-field>
+        <p>
+          <button (click)="cancel()" mat-raised-button color="primary" style="margin-right: 30px">Cancel</button>
+          <button type="submit" mat-raised-button color="primary">Confirm</button>
+        </p>
+      </form>
+    </mat-card-content>
+
+  </ng-template>
+</mat-card>
+<mat-card class="my-card">
+  <mat-card-content>
+    <button routerLink="/orderhistory" mat-raised-button color="primary">History Order</button>
+  </mat-card-content>
+</mat-card>

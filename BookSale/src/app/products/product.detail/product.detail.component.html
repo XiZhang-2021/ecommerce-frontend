@@ -1,0 +1,67 @@
+<div *ngIf="product" class="container-fluid">
+  <div class="row product-detail-container">
+    <div class="col-sm-9 d-flex justify-content-center flex-column">
+      <div class="product-detail-title">
+        <h1>{{product.name}}</h1>
+        <h3>{{product.timeversion}}</h3>
+      </div>
+      <br>
+      <div class="product-detail-image-container text-center">
+        <img src="{{product.image}}" class="product-detail-image" width="150" height="240">
+      </div>
+      <br>
+      <div class="product-detail-info-brand">
+        Description: {{product.description}}
+      </div>
+      <br>
+      <div class="d-flex justify-content-center" style="margin-top: 10px;">
+        <ng-template [ngIf]="reviewList?.length===0">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">No Review</h5>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <div *ngFor="let review of reviewList | paginate : {itemsPerPage : 3, currentPage:p}">
+        <div class="card" style="width: 18rem; margin: 0 auto; margin-top:15px;" height="40px">
+          <div class="card-body">
+            <h5 class="card-title">{{review.username}}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{review.reviewtime}}</h6>
+            <p class="card-text">{{review.productreview}}</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <pagination-controls (pageChange)="p=$event" class="float-end, pagination-controls-container d-flex justify-content-center" style="margin-top: 5px"></pagination-controls>
+      </div>
+    </div>
+    <div class="col-sm-3 product-detail-info-container">
+      <div class="product-detail-info-price">
+        {{product.price | currency}}
+      </div>
+      <br>
+      <div class="product-detail-info-brand">
+        Author: {{product.author}}
+      </div>
+      <br>
+      <div>
+        <label name = "quantity">QTY</label>
+        <input name = "quantity" type="text" [(ngModel)]="qty" placeholder="Stock : {{product.stock}}">
+        <p>Stock : {{product.stock}}</p>
+      </div>
+
+      <div class="product-detail-info-cart-button-container">
+        <span>
+          <button (click) = "addToCart(product)" [disabled] = "qty > product.stock" class="btn btn-primary btn-block">ADD TO CART</button>
+          <br>
+        </span>
+        <br>
+        <span>
+          <button (click)="addToFavoriate(product)" class="btn btn-pink btn-block">ADD TO FAVORITE</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+

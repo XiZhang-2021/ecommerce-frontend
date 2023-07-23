@@ -1,0 +1,91 @@
+<div *ngIf = "!auth.user || (auth.user && auth.user.profile.type === 'user')">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+  <a routerLink="/products" class="navbar-brand" href="#">{{title}}</a>
+  <button class="navbar-toggler" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+
+<!--      <li class="nav-item">-->
+<!--        <a routerLink="/home" routerLinkActive = "active" class="nav-link">Home</a>-->
+<!--      </li>-->
+      <li class="nav-item">
+        <a routerLink="/products" routerLinkActive = "my-active" class="nav-link">Books</a>
+      </li>
+<!--      <li class="nav-item">-->
+<!--        <a routerLink="/prime" routerLinkActive = "my-active" class="nav-link">Prime</a>-->
+<!--      </li>-->
+      <li class="nav-item">
+        <div class="input-icon-container">
+          <input type="text" class="form-control search-input" placeholder="SEARCH" [(ngModel)]="keyword">
+          <span class="icon-container">
+            <i (click)="search()" class="fas fa-search"></i>
+          </span>
+        </div>
+      </li>
+
+    </ul>
+    <ul class="navbar-nav ms-auto">
+      <a *ngIf="!auth.user; else userTemplate" routerLink="/products" routerLinkActive = "my-active" class="nav-link">Hi welcome!</a>
+      <ng-template #userTemplate>
+        <a routerLink="/userinfo" routerLinkActive = "my-active" class="nav-link">Hi {{auth.user?.username}}</a>
+      </ng-template>
+      <li class="nav-item">
+        <a *ngIf="!auth.user; else logoutTemplate" routerLink="/login" routerLinkActive = "my-active" class="nav-link">Login</a>
+        <ng-template #logoutTemplate>
+          <a (click)="auth.logout()" routerLinkActive = "my-active" class="nav-link">Logout</a>
+        </ng-template>
+      </li>
+      <li>
+          <a *ngIf="auth.user" routerLink="/products/favoriate" routerLinkActive = "my-active" class="nav-link">favoriate</a>
+      </li>
+      <li>
+        <button (click) = "onClick()" mat-button>
+          <mat-icon>shopping_cart</mat-icon>
+          CART {{totalItem}}
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+</div>
+
+<div *ngIf = "auth.user && auth.user.profile && auth.user.profile.type === 'admin'">
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+  <a  class="navbar-brand" >{{title}}</a>
+  <button class="navbar-toggler" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav1">
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a routerLink="/admin" routerLinkActive = "active" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLinkActive = "my-active" class="nav-link"> Welcome Admin</a>
+      </li>
+    </ul>
+
+
+    <ul class="navbar-nav ms-auto">
+      <a *ngIf="!auth.user; else userTemplate" routerLink="/products" routerLinkActive = "my-active" class="nav-link">Hi welcome!</a>
+      <ng-template #userTemplate>
+        <a routerLinkActive = "my-active" class="nav-link">Hi {{auth.user.username}}</a>
+      </ng-template>
+      <li class="nav-item">
+        <a *ngIf="!auth.user; else logoutTemplate" routerLink="/login" routerLinkActive = "my-active" class="nav-link">Login</a>
+        <ng-template #logoutTemplate>
+          <a (click)="auth.logout()" routerLinkActive = "my-active" class="nav-link">Logout</a>
+        </ng-template>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+</div>
+

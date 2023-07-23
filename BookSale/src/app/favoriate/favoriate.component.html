@@ -1,0 +1,23 @@
+<section class="products-list-section" *ngIf="favoriates" xmlns:max-width="http://www.w3.org/1999/xhtml"
+         xmlns:overflow="http://www.w3.org/1999/xhtml" xmlns:white-space="http://www.w3.org/1999/xhtml"
+         xmlns:text-overflow="http://www.w3.org/1999/xhtml">
+  <div class="row">
+  <div *ngFor="let favoriate of favoriates | paginate:{itemsPerPage:12, currentPage: p}" class="col-md-3">
+    <div class="card">
+      <div class="image-container">
+        <img src="{{favoriate.image}}" class="card-img-top" width="80" height="100">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;'>{{favoriate.productname}}</h5>
+<!--        <p class="card-text" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;'>{{favoriate.description}}</p>-->
+        <div class="a-container">
+          <button routerLink="/products/detail/{{favoriate.product.id}}" class="btn btn-primary btn-spacing" >Deatil</button>
+          <button routerLink="/products/favoriate/" class="btn btn-primary" (click) = "deleteFrom(favoriate)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <pagination-controls (pageChange)="p = $event" class="float-right pagination-controls-container">
+    </pagination-controls>
+</div>
+</section>

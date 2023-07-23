@@ -1,0 +1,35 @@
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+
+section:first-child {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left : 20px;
+  margin-right : 80px;
+
+}
+section:nth-child(2) {
+  margin-top: 0px;
+}
+main {
+  display: flex;
+  justify-content: space-between;
+}
+.total-row {
+  font-weight: bold;
+  background-color: #eee;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+.right-align {
+  text-align: right;
+}

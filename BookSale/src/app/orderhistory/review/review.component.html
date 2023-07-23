@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Write your review</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <textarea matInput placeholder="Your review" formControlName="review"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button cdkFocusInitial (click)="onSubmit()">Submit</button>
+</mat-dialog-actions>

@@ -1,0 +1,82 @@
+<div *ngIf="product" class="container-fluid">
+  <div class="row product-detail-container">
+    <div class="col-sm-9">
+      <div class="product-detail-title">
+        <h1>{{product.name}}</h1>
+        <h2>{{product.timeversion}}</h2>
+      </div>
+      <div class="product-detail-image-container text-center">
+        <img src="{{product.image}}" class="product-detail-image" width="150" height="240">
+      </div>
+      <div class="product-detail-info-brand">
+        Description: {{product.description}}
+      </div>
+    <br>
+    <div class="d-flex justify-content-center" style="margin-top: 10px;">
+      <ng-template [ngIf]="reviewList?.length===0">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">No Review</h5>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div *ngFor="let review of reviewList | paginate : {itemsPerPage : 3, currentPage:p}">
+      <div class="card" style="width: 18rem; margin: 0 auto; margin-top:15px;" height="40px">
+        <div class="card-body">
+          <h5 class="card-title">{{review.username}}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{review.reviewtime}}</h6>
+          <p class="card-text">{{review.productreview}}</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <pagination-controls (pageChange)="p=$event" class="float-end, pagination-controls-container d-flex justify-content-center" style="margin-top: 5px">
+      </pagination-controls>
+    </div>
+   </div>
+
+    <div class="col-sm-3 product-detail-info-container">
+      <div class="product-detail-info-price">
+        {{product.price | currency}}
+      </div>
+      <br>
+      <div>
+        <button (click)="changePrice()" class="btn btn-primary btn-block">Change Price</button>
+
+        <ng-template [ngIf]="chaPrice">
+          <input style="margin-top: 20px" name = "quantity" type="text" [(ngModel)]="newPrice" placeholder="{{product.price}}">
+          <br>
+          <button style="margin-top: 20px; margin-right: 10px;" (click)="changP(product)" class="btn btn-primary btn-block">Confirm</button>
+          <button style="margin-top: 20px;" (click)="cancel()" class="btn btn-primary btn-block">Cancel</button>
+        </ng-template>
+      </div>
+      <br>
+      <div class="product-detail-info-brand">
+        Author: {{product.author}}
+      </div>
+      <br>
+      <div>
+        <p>Original Stock : {{product.stock}}</p>
+        <br>
+        <button (click)="updateStock()" class="btn btn-primary btn-block">Update Stock</button>
+
+        <ng-template [ngIf]="updStock">
+            <input style="margin-top: 20px" name = "quantity" type="text" [(ngModel)]="newStock" placeholder="{{product.stock}}">
+            <br>
+            <button style="margin-top: 20px; margin-right: 10px;" (click)="updateS(product)" class="btn btn-primary btn-block">Confirm</button>
+            <button style="margin-top: 20px;" (click)="cancel()" class="btn btn-primary btn-block">Cancel</button>
+        </ng-template>
+      </div>
+
+      <div class="product-detail-info-cart-button-container">
+
+        <span>
+          <button (click) = "delete(product)" class="btn btn-warning btn-block">Delete</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+

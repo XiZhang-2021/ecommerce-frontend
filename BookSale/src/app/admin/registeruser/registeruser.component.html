@@ -1,0 +1,84 @@
+<div fxLayout fxLayoutAlign="center" style="margin: 20px 50px;">
+  <mat-card fxLayout="column" fxFlex="1 1 50%" fxFlex.lt-sm="1 1 auto">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form fxLayout="column" [formGroup]="registerFormGroup" (ngSubmit)="register()"  >
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input type="text" matInput formControlName="username">
+          <mat-error *ngIf="registerFormGroup.get('username')?.getError('email')">Username must be in email format</mat-error>
+          <mat-error *ngIf="registerFormGroup.get('username')?.getError('required')">Username must be required</mat-error>
+        </mat-form-field>
+        <div fxLayout="column" formGroupName="passwordGroup">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password">
+            <mat-error>Password is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input type="password" matInput formControlName="confirmPassword">
+          </mat-form-field>
+          <mat-error>{{registerFormGroup.get('passwordGroup')?.getError('passwordNotMatch')}}</mat-error>
+        </div>
+        <mat-form-field>
+          <mat-label>Phone</mat-label>
+          <input type="text" matInput formControlName="phone">
+          <mat-error *ngIf="registerFormGroup.get('phone')?.getError('required')">Phone must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input type="text" matInput formControlName="address">
+          <mat-error *ngIf="registerFormGroup.get('address')?.getError('required')">Address must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input type="text" matInput formControlName="city">
+          <mat-error *ngIf="registerFormGroup.get('city')?.getError('required')">City must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Zip</mat-label>
+          <input type="text" matInput formControlName="zip">
+          <mat-error *ngIf="registerFormGroup.get('zip')?.getError('required')">Zip must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>State</mat-label>
+          <input type="text" matInput formControlName="state">
+          <mat-error *ngIf="registerFormGroup.get('state')?.getError('required')">State must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Card Number</mat-label>
+          <input type="text" matInput formControlName="cardnumber">
+          <mat-error *ngIf="registerFormGroup.get('cardnumber')?.getError('required')">Card Number must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Card Expdate</mat-label>
+          <input type="text" matInput formControlName="validateexpdate">
+          <mat-error *ngIf="registerFormGroup.get('validateexpdate')?.getError('required')">Card Expdate must be required</mat-error>
+        </mat-form-field>
+<!--        <mat-form-field>-->
+<!--          <mat-label>Card CVV</mat-label>-->
+<!--          <input type="text" matInput formControlName="cvv">-->
+<!--          <mat-error *ngIf="registerFormGroup.get('cvv')?.getError('required')">Card CVV must be required</mat-error>-->
+<!--        </mat-form-field>-->
+        <div>
+          <mat-form-field>
+            <mat-label>type</mat-label>
+            <mat-select formControlName="type">
+              <mat-option value="admin">admin</mat-option>
+              <mat-option value="user">user</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <p>
+          <button type="submit" mat-raised-button color="primary">Register</button>
+        </p>
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+</div>
+
+

@@ -1,0 +1,49 @@
+<main>
+  <section>
+    <mat-form-field class="example-full-width">
+      <input matInput style="height: 15px" placeholder="order id" [(ngModel)]="keyword">
+    </mat-form-field>
+    <button (click)="search()" mat-button color="primary">SEARCH</button>
+    <button (click)="getAllUsers()" mat-button color="primary">All USERS</button>
+
+  </section>
+  <section>
+    <table mat-table [dataSource]="users | paginate : {itemsPerPage : 10, currentPage : p}" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let user"> {{user.address}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef> Phone </th>
+        <td mat-cell *matCellDef="let user"> {{user.phone}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let user"> <button mat-raised-button color="primary" (click) = "delete(user)">Delete</button> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+        <br>
+    <div>
+      <pagination-controls (pageChange)="p = $event" class="float-right pagination-controls-container">
+      </pagination-controls>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,46 @@
+<main class="products-container">
+  <section class="products-filter-section">
+    <div class="d-flex align-items-start">
+
+      <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group" style="margin-right : 10px;">
+        <input type="radio" [(ngModel)]="selectedCategory" class="btn-check" name="vbtn-radio" id="vbtn-radio1" (change)="onChangeCategory()" autocomplete="off" checked value="all">
+        <label class="btn btn-outline-primary" for="vbtn-radio1">all</label>
+        <input type="radio" [(ngModel)]="selectedCategory" class="btn-check" name="vbtn-radio" id="vbtn-radio2" (change)="onChangeCategory()" autocomplete="off" value="history">
+        <label class="btn btn-outline-primary" for="vbtn-radio2">history</label>
+        <input type="radio" [(ngModel)]="selectedCategory" class="btn-check" name="vbtn-radio" id="vbtn-radio3" (change)="onChangeCategory()" autocomplete="off" value="textbook">
+        <label class="btn btn-outline-primary" for="vbtn-radio3">textbook</label>
+        <input type="radio" [(ngModel)]="selectedCategory" class="btn-check" name="vbtn-radio" id="vbtn-radio4" (change)="onChangeCategory()" autocomplete="off" value="novel">
+        <label class="btn btn-outline-primary" for="vbtn-radio4">novel</label>
+        <input type="radio" [(ngModel)]="selectedCategory" class="btn-check" name="vbtn-radio" id="vbtn-radio5" (change)="onChangeCategory()" autocomplete="off" value="art">
+        <label class="btn btn-outline-primary" for="vbtn-radio5">art</label>
+        <input type="radio" [(ngModel)]="selectedCategory" class="btn-check" name="vbtn-radio" id="vbtn-radio6" (change)="onChangeCategory()" autocomplete="off" value="computer">
+        <label class="btn btn-outline-primary" for="vbtn-radio6">computer</label>
+      </div>
+
+
+      <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Price
+        </button>
+        <ul class="dropdown-menu">
+          <li><button (click)="highToLow()" class="dropdown-item">high to low</button></li>
+          <li><button (click)="lowToHigh()"class="dropdown-item">low to high</button></li>
+        </ul>
+      </div>
+
+
+    </div>
+
+  </section>
+  <section class="products-list-section">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let product of products | paginate : {itemsPerPage : 8, currentPage:p}">
+        <app-product-overview [product]="product"></app-product-overview>
+      </div>
+      <div>
+        <pagination-controls (pageChange)="p=$event" class="float-end, pagination-controls-container" ></pagination-controls>
+      </div>
+    </div>
+  </section>
+</main>
+

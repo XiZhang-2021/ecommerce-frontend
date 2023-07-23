@@ -1,0 +1,66 @@
+
+<div fxLayout fxLayoutAlign="center" style="margin: 20px 50px;">
+
+  <mat-card fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 50%" fxFlex.lt-sm="1 1 auto">
+
+    <form [formGroup]="fileForm">
+      <input type="file" id="file" (change)="onFileChange($event)" formControlName="file">
+      <button (click)="upLoadFile()" mat-raised-button color="primary">Upload</button>
+    </form>
+
+  </mat-card>
+
+  <mat-card fxLayout="column" fxFlex="1 1 50%" fxFlex.lt-sm="1 1 auto">
+    <mat-card-header>
+      <mat-card-title>Add Book</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form fxLayout="column" [formGroup]="addFormGroup" (ngSubmit)="add()"  >
+        <mat-form-field>
+          <mat-label>Book Name</mat-label>
+          <input type="text" matInput formControlName="name" >
+          <mat-error *ngIf="addFormGroup.get('name')?.getError('required')">book name must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Author</mat-label>
+          <input type="text" matInput formControlName="author" >
+          <mat-error *ngIf="addFormGroup.get('author')?.getError('required')">author must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Price</mat-label>
+          <input type="text" matInput formControlName="price" >
+          <mat-error *ngIf="addFormGroup.get('price')?.getError('required')">price must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input type="text" matInput formControlName="description" >
+          <mat-error *ngIf="addFormGroup.get('description')?.getError('required')">description must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Genre</mat-label>
+          <input type="text" matInput formControlName="genre" >
+          <mat-error *ngIf="addFormGroup.get('genre')?.getError('required')">genre must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Time Version</mat-label>
+          <input type="text" matInput formControlName="timeversion" >
+          <mat-error *ngIf="addFormGroup.get('timeversion')?.getError('required')">timeversion must be required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Stock</mat-label>
+          <input type="text" matInput formControlName="stock" >
+          <mat-error *ngIf="addFormGroup.get('stock')?.getError('required')">stock must be required</mat-error>
+        </mat-form-field>
+<!--        <mat-form-field>-->
+<!--          <mat-label>Image</mat-label>-->
+<!--          <input type="text" matInput formControlName="image">-->
+<!--          <mat-error *ngIf="addFormGroup.get('image')?.getError('required')">image must be required</mat-error>-->
+<!--        </mat-form-field>-->
+        <p>
+          <button type="submit" mat-raised-button color="primary">SUBMIT</button>
+        </p>
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+</div>

@@ -1,0 +1,18 @@
+
+.card-section {
+  width: 100%;
+}
+
+.full-width-card {
+  width: 100%;
+}
+
+.example-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 5px 5px 5px 0;
+}

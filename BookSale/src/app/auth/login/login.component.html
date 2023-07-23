@@ -1,0 +1,27 @@
+<!--login use template driven form-->
+<main class="container" style="margin-top: 10px;">
+  <mat-card class = "login-card" fxFlex="40%" fxFlex.gt-xs="60%" fxFlexOffset.gt-sm="20%">
+    <mat-card-title>Login</mat-card-title>
+    <form ngForm #loginFormInstance="ngForm" fxLayout="column" (ngSubmit)="login(loginFormInstance)" >
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput type="text" ngModel name = "username" required minlength="3">
+        <mat-error>your username is must be no less than 3 characters long</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" ngModel name = "password" required>
+        <mat-error>your password is required</mat-error>
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button color = "primary" type="submit" [disabled]="!!loginFormInstance.invalid">Login</button> &nbsp;
+        <a routerLink="/register" mat-raised-button color="accent">Register</a>
+      </div>
+    </form>
+  </mat-card>
+</main>
+
+
+

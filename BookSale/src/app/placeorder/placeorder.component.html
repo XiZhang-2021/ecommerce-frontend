@@ -1,0 +1,128 @@
+<main>
+  <section *ngIf="user">
+    <mat-card>
+    <table mat-table [dataSource]="purchases" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="No">
+        <th mat-header-cell *matHeaderCellDef> No </th>
+        <td mat-cell *matCellDef="let purchase"> {{purchase.index}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let purchase"> {{purchase.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Image">
+        <th mat-header-cell *matHeaderCellDef> Image </th>
+        <td mat-cell *matCellDef="let purchase"> <img src = {{purchase.image}} width = 60 hegiht="70"></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let purchase"> ${{purchase.price}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let purchase"> {{purchase.quantity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let purchase"> ${{purchase.total}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </mat-card>
+    <br>
+    <mat-card>
+      <mat-card-content>
+        <p style="text-align: right;">Total : ${{total}}</p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <section>
+<mat-stepper orientation="vertical" [linear]="true" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="second1Ctrl" placeholder="{{user.address}}" required >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput formControlName="second2Ctrl" placeholder="{{user.city}}" required >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Zip</mat-label>
+        <input matInput formControlName="second3Ctrl" placeholder="{{user.zip}}" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>State</mat-label>
+        <input matInput formControlName="second4Ctrl" placeholder="{{user.state}}" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Fill your phone</ng-template>
+      <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input matInput placeholder="{{phone}}" formControlName="thirdControl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="fourthFormGroup">
+    <form [formGroup]="fourthFormGroup">
+      <ng-template matStepLabel>Card Number</ng-template>
+      <mat-form-field>
+        <mat-label>Card Number</mat-label>
+        <input matInput placeholder="{{user.cardnumber}}" formControlName="fourth1Control" required [(ngModel)] = "cardnumber">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Expire Date</mat-label>
+        <input matInput placeholder="{{user.validateexpdate}}" formControlName="fourth2Control" required [(ngModel)] = "expdate">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>CVV Number</mat-label>
+        <input matInput placeholder="000" formControlName="fourth3Control" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Confirm your order</ng-template>
+    <p>Confirm Order</p>
+    <div>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="confirm()">Confirm</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+    </section>
+</main>
