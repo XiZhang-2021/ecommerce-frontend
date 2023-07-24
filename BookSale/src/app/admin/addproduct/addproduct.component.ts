@@ -77,11 +77,13 @@ export class AddproductComponent implements OnInit{
 
   upLoadFile() {
     const formData = new FormData();
-    formData.append('file', this.selectedFile);
-    this.httpClient.post(environments.api+'/api/products/admin/saveimage', formData, {responseType: 'text'}).subscribe((res : any) => {
-      this.imageUrl = res;
-      console.log(res);
-      alert('upload successfully!');
-    });
+    if(this.selectedFile){
+      formData.append('file', this.selectedFile);
+      this.httpClient.post(environments.api+'/api/products/admin/saveimage', formData, {responseType: 'text'}).subscribe((res : any) => {
+        this.imageUrl = res;
+        console.log(res);
+        alert('upload successfully!');
+      });
+    }
   }
 }
