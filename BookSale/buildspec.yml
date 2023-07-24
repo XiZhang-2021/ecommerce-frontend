@@ -11,6 +11,7 @@ phases:
       nodejs: 16
     commands:
       - echo Installing source NPM dependencies
+      - cd BookSale
       - npm install
       - npm install -g @angular/cli
   build:
@@ -21,4 +22,4 @@ artifacts:
   files:
     - '**/*'
   base-directory: "dist"
-  discard-path: yes
+  discard-paths: yes
