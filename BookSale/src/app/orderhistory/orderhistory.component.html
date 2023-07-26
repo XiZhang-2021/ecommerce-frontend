@@ -4,7 +4,7 @@
   </ng-template>
   <section *ngIf = "user && historyOrder">
     <mat-card >
-      <table mat-table [dataSource]="historyOrder | paginate : {itemsPerPage : 2, currentPage:p}" class="mat-elevation-z8">
+      <table mat-table [dataSource]="historyOrder | paginate : {itemsPerPage : 10, currentPage:p}" class="mat-elevation-z8">
 
         <ng-container matColumnDef="No">
           <th mat-header-cell *matHeaderCellDef> No </th>
