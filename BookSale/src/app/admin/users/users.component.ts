@@ -13,7 +13,7 @@ import {environments} from "../../shared/environments/environments";
 export class UsersComponent implements OnInit{
   user : any;
   users : any;
-  displayedColumns: string[] = ['id', 'username', 'address', 'phone', 'delete'];
+  displayedColumns: string[] = ['id', 'type', 'username', 'address', 'phone', 'delete'];
   p: any;
   keyword: any;
 
