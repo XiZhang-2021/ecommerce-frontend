@@ -120,7 +120,7 @@ export class StatisticsComponent implements OnInit{
           }],
           data: [{
             type: "pie", //change type to column, line, area, doughnut, etc
-            indexLabel: "{name}: {y}%",
+            indexLabel: "{name}: {y}",
             yValueFormatString: "#,##0.00'%'",
             dataPoints: [
               { name: "history", y: this.categoryMap.get('history') },
