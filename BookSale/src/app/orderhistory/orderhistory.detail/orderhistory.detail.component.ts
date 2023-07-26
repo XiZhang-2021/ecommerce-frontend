@@ -75,8 +75,10 @@ export class OrderhistoryDetailComponent implements OnInit{
     const dialogRef = this.dialog.open(ReviewComponent);
 
     dialogRef.afterClosed().subscribe(review => {
-      this.reviewMessage = review;
-      this.createReview(this.reviewMessage, purchase);
+      if(review){
+        this.reviewMessage = review;
+        this.createReview(this.reviewMessage, purchase);
+      }
     });
   }
 

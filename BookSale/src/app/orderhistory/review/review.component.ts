@@ -22,7 +22,7 @@ export class ReviewComponent implements OnInit{
   }
 
   onSubmit(){
-    if(this.reviewForm){
+    if(this.reviewForm.value){
       this.dialogRef.close(this.reviewForm.value.review);
     }
   }
