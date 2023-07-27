@@ -43,9 +43,10 @@ export class PlaceorderComponent implements OnInit {
 
   purchasesReq : any;
 
-  displayedColumns: string[] = ['No', 'Name', 'Image', 'Quantity', 'Price', 'Total'];
+  displayedColumns: string[] = ['Name', 'Image', 'Quantity', 'Price', 'Total'];
 
   pendingOrderRequest : any;
+
 
   ngOnInit(): void {
     this.auth.sendUser
@@ -99,6 +100,8 @@ export class PlaceorderComponent implements OnInit {
         item = Object.assign(item, {index : this.index++});
       });
       this.purchases = res;
+      console.log(res);
+      console.log(this.purchases);
       this.total = this.purchases.reduce((sum:any, purchase:any) => sum + purchase.total, 0);
       this.total = parseFloat(this.total.toFixed(2));
       res.forEach((item : any) => {
@@ -111,7 +114,8 @@ export class PlaceorderComponent implements OnInit {
         item = Object.assign(item, {status : 'Pending'});
       });
       this.purchasesReq = res;
-
+      console.log(this.purchasesReq);
+      this.index=0;
     });
   }
 
@@ -129,7 +133,6 @@ export class PlaceorderComponent implements OnInit {
       'orderaddress' : addr,
       'orderpaymentinfo' : this.cardnumber,
       'purchases' : this.purchases
-
     }
     console.log(this.pendingOrderRequest);
     this.httpClient.post(environments.api+'/api/products/order/create', this.pendingOrderRequest)
