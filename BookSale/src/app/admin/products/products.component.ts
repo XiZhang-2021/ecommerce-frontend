@@ -16,7 +16,7 @@ export class ProductsComponent implements OnInit{
     private httpClient : HttpClient,
     private ps : ProductService
   ){
-    this.auth.sendUser.next(this.auth.user);
+    // this.auth.sendUser.next(this.auth.user);
   }
 
   user : any;
