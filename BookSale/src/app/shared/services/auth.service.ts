@@ -36,6 +36,9 @@ export class AuthService {
           }
         },error => {
           localStorage.removeItem('token');
+
+
+          console.log('abc');
         });
     }
   }
